@@ -21,6 +21,8 @@ import { Gastronomie } from './pages/Gastronomie';
 import { AndereBranchen } from './pages/AndereBranchen';
 import { Immobilienmakler } from './pages/Immobilienmakler';
 import TerminGebucht from './pages/termin-gebucht';
+import LandingPage from './pages/landing';
+
 
 function App() {
   const path = window.location.pathname;
@@ -33,6 +35,10 @@ function App() {
         <Footer />
       </>
     );
+  }
+
+  if (path === '/landing') {
+    return <LandingPage />;
   }
 
   if (path.startsWith('/blog/')) {
