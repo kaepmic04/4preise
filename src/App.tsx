@@ -20,6 +20,7 @@ import { Autowerkstatt } from './pages/Autowerkstatt';
 import { Gastronomie } from './pages/Gastronomie';
 import { AndereBranchen } from './pages/AndereBranchen';
 import { Immobilienmakler } from './pages/Immobilienmakler';
+import TerminGebucht from './pages/termin-gebucht';
 
 function App() {
   const path = window.location.pathname;
@@ -138,6 +139,16 @@ function App() {
       <>
         <h1 className="sr-only">Weitere Branchenlösungen für KI-Sprachassistenz - AI Rezeption</h1>
         <AndereBranchen />
+        <Footer />
+      </>
+    );
+  }
+
+  if (path === '/termin-gebucht') {
+    return (
+      <>
+        <h1 className="sr-only">Termin gebucht – AI Rezeption</h1>
+        <TerminGebucht />
         <Footer />
       </>
     );
