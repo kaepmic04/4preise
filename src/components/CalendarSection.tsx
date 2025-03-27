@@ -1,6 +1,7 @@
-import { useEffect } from 'react';
-import { motion } from 'framer-motion';
-import { useInView } from 'react-intersection-observer';
+import { useEffect } from "react";
+import { motion } from "framer-motion";
+import { useInView } from "react-intersection-observer";
+import Cal, { getCalApi } from "@calcom/embed-react";
 
 export function CalendarSection() {
   const [ref, inView] = useInView({
@@ -9,67 +10,13 @@ export function CalendarSection() {
   });
 
   useEffect(() => {
-    const loadCalScript = () => {
-      const script = document.createElement('script');
-      script.innerHTML = `
-        (function (C, A, L) { 
-          let p = function (a, ar) { a.q.push(ar); }; 
-          let d = C.document; 
-          C.Cal = C.Cal || function () { 
-            let cal = C.Cal; 
-            let ar = arguments; 
-            if (!cal.loaded) { 
-              cal.ns = {}; 
-              cal.q = cal.q || []; 
-              d.head.appendChild(d.createElement("script")).src = A; 
-              cal.loaded = true; 
-            } 
-            if (ar[0] === L) { 
-              const api = function () { p(api, arguments); }; 
-              const namespace = ar[1]; 
-              api.q = api.q || []; 
-              if(typeof namespace === "string") {
-                cal.ns[namespace] = cal.ns[namespace] || api;
-                p(cal.ns[namespace], ar);
-                p(cal, ["initNamespace", namespace]);
-              } else {
-                p(cal, ar); 
-              }
-              return;
-            } 
-            p(cal, ar); 
-          }; 
-        })(window, "https://app.cal.com/embed/embed.js", "init");
-      `;
-      document.body.appendChild(script);
-
-      // Initialize Cal after script is loaded
-      const initScript = document.createElement('script');
-      initScript.innerHTML = `
-        Cal("init", "30min", {origin:"https://cal.com"});
-
-        Cal.ns["30min"]("inline", {
-          elementOrSelector:"#my-cal-inline",
-          config: {"layout":"month_view"},
-          calLink: "michel-kappler-lahrgc/30min",
-        });
-
-        Cal.ns["30min"]("ui", {"hideEventTypeDetails":false,"layout":"month_view"});
-      `;
-      document.body.appendChild(initScript);
-    };
-
-    loadCalScript();
-
-    return () => {
-      // Cleanup scripts on component unmount
-      const scripts = document.querySelectorAll('script');
-      scripts.forEach(script => {
-        if (script.innerHTML.includes('Cal(') || script.innerHTML.includes('function (C, A, L)')) {
-          script.remove();
-        }
+    (async function () {
+      const cal = await getCalApi({ namespace: "30min" });
+      cal("ui", {
+        hideEventTypeDetails: false,
+        layout: "month_view",
       });
-    };
+    })();
   }, []);
 
   return (
@@ -83,7 +30,7 @@ export function CalendarSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-white mb-6">
-            Termin{' '}
+            Termin{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
               vereinbaren
             </span>
@@ -94,9 +41,11 @@ export function CalendarSection() {
         </motion.div>
 
         <div className="bg-gray-900/50 backdrop-blur-sm p-8 rounded-2xl border border-gray-800">
-          <div 
-            id="my-cal-inline" 
-            style={{ width: '100%', minHeight: '600px', height: '100%' }}
+          <Cal
+            namespace="30min"
+            calLink="ai-rezeption/30min"
+            config={{ layout: "month_view" }}
+            style={{ width: "100%", height: "100%", overflow: "scroll" }}
           />
         </div>
       </div>
