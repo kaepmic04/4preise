@@ -18,7 +18,7 @@ const TerminGebucht = () => {
   }, []);
 
   return (
-    <main className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-white text-black">
+    <main className="min-h-screen flex flex-col items-center justify-center text-center px-4 bg-black text-white">
       <h1 className="text-3xl sm:text-4xl font-bold mb-4">Vielen Dank für Ihre Buchung!</h1>
       <p className="text-lg text-gray-700 mb-8">
         Ihr Termin wurde erfolgreich eingetragen. Wir freuen uns auf das Gespräch.
