@@ -30,13 +30,13 @@ export function CalendarSection() {
           className="text-center mb-16"
         >
           <h2 className="text-4xl font-bold text-white mb-6">
-            Termin{" "}
+            Kostenlosen Termin{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
               vereinbaren
             </span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            Wählen Sie einen passenden Termin für unser Gespräch aus.
+            Wählen Sie einen passenden kostenlosen Termin für unser Gespräch aus.
           </p>
         </motion.div>
 
