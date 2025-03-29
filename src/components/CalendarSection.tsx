@@ -29,14 +29,30 @@ export function CalendarSection() {
           transition={{ duration: 0.6 }}
           className="text-center mb-16"
         >
+          {/* Überschrift */}
           <h2 className="text-4xl font-bold text-white mb-6">
             Kostenlosen Termin{" "}
             <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-purple-600">
               vereinbaren
             </span>
           </h2>
-          <p className="text-gray-400 max-w-2xl mx-auto">
+
+          {/* Beschreibung */}
+          <p className="text-gray-400 max-w-2xl mx-auto mb-4">
             Wählen Sie einen passenden kostenlosen Termin für unser Gespräch aus.
+          </p>
+
+          {/* WhatsApp Hinweis */}
+          <p className="text-gray-400 text-base mt-6">
+            Oder schreiben Sie mir direkt auf{" "}
+            <a
+              href="https://wa.me/4915733275381"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="text-green-400 underline hover:text-green-300"
+            >
+              WhatsApp: +49 1573 3275381
+            </a>
           </p>
         </motion.div>
 
